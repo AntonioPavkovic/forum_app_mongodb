@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Forum</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Edit Forum</h1>
+  </div>
+  <div class="form-container">
+    <form method="POST" action="/forums/<%= forum._id %>?_method=PUT">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= forum.name %>" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><%= forum.description %></textarea>
+      </div>
+      <button type="submit" class="submit-button">Update</button>
+    </form>
+  </div>
+</body>
+</html>

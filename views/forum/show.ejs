@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= forum.name %></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="header">
+    <h1><%= forum.name %></h1>
+  </div>
+  <div class="forum-info">
+    <p>Description: <%= forum.description %></p>
+    <p>Created at: <%= forum.created_at %></p>
+    <p>User ID: <%= forum.user_id %></p>
+  </div>
+  <div class="buttons">
+    <a href="/forums/<%= forum._id %>/edit" class="edit-button">Edit</a>
+    <form method="POST" action="/forums/<%= forum._id %>?_method=DELETE">
+      <button type="submit" class="delete-button">Delete</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -5,6 +5,9 @@ const forumRoutes = require('./routes/forumRoutes');
 const app = express();
 const port = process.env.PORT || 5000;
 
+const methodOverride = require('method-override');
+
+app.use(methodOverride('_method'));
 
 const database = (module.exports = () => {
     const connectionParams = {
@@ -14,7 +17,7 @@ const database = (module.exports = () => {
 
     try {
         mongoose.connect(
-            'mongodb+srv://antoniopavkovic:SBP-Mongo@cluster0.jjbaqar.mongodb.net/?retryWrites=true&w=majority',
+            'mongo-uri',
             connectionParams
             );
         console.log('Database connected succesfully');

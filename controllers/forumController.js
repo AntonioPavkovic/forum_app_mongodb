@@ -2,7 +2,7 @@ const Forum = require('../models/Forum');
 
 // Display the create forum page
 const createForumPage = (req, res) => {
-  res.render('create');
+  res.render('forum/create');
 };
 
 // Create a new forum
@@ -21,7 +21,7 @@ const createForum = async (req, res) => {
 const getAllForums = async (req, res) => {
   try {
     const forums = await Forum.find();
-    res.render('index', { forums });
+    res.render('forum/index', { forums });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -34,7 +34,7 @@ const getForumById = async (req, res) => {
     if (!forum) {
       return res.status(404).json({ message: 'Forum not found' });
     }
-    res.render('show', { forum });
+    res.render('forum/show', { forum });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -47,7 +47,7 @@ const editForumPage = async (req, res) => {
     if (!forum) {
       return res.status(404).json({ message: 'Forum not found' });
     }
-    res.render('edit', { forum });
+    res.render('forum/edit', { forum });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

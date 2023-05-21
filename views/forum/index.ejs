@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forums</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="header">
+    <h1>Forums</h1>
+  </div>
+  <div class="forum-list">
+    <% forums.forEach((forum) => { %>
+      <div class="forum">
+        <h2><a href="/forums/<%= forum._id %>"><%= forum.name %></a></h2>
+        <p><%= forum.description %></p>
+        <div class="forum-meta">
+          <span>Created at: <%= forum.created_at %></span>
+          <span>User ID: <%= forum.user_id %></span>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+  <a href="/forums/create" class="create-button">Create New Forum</a>
+</body>
+</html>
