@@ -1,55 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const User = require('./models/User')
-const Forum = require('./models/Forum')
+const forumRoutes = require('./routes/forumRoutes');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-
-const newUser = new User({
-    username: 'antonio',
-    password: 'antonio',
-    email: 'antonio@gmail.com'
-});
-  
-newUser.save()
-  .then((user) => {
-    console.log('New user created:', user);
-    // Handle success response
-  })
-  .catch((error) => {
-    console.log('Error:', error);
-    // Handle error response
-});
-
-
-const createForum = async () => {
-    try {
-      // Find the user by their username
-      const user = await User.findOne({ username: 'antonio' });
-  
-      if (user) {
-        // Create a new forum with the user reference
-        const newForum = new Forum({
-          name: 'Example Forum',
-          description: 'Forum description',
-          user_id: user._id,
-        });
-  
-        // Save the new forum
-        const forum = await newForum.save();
-        console.log('New forum created:', forum);
-      } else {
-        console.log('User not found');
-      }
-    } catch (error) {
-      console.log('Error creating forum:', error);
-    }
-};
-  
-createForum();
 
 const database = (module.exports = () => {
     const connectionParams = {
@@ -59,7 +14,7 @@ const database = (module.exports = () => {
 
     try {
         mongoose.connect(
-            'mongodb-atlas-uri',
+            'mongodb+srv://antoniopavkovic:SBP-Mongo@cluster0.jjbaqar.mongodb.net/?retryWrites=true&w=majority',
             connectionParams
             );
         console.log('Database connected succesfully');
@@ -70,10 +25,18 @@ const database = (module.exports = () => {
 
 });
 
-app.set('view engine', 'ejs');
-
 database();
 
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Routes
+app.use('/forums', forumRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

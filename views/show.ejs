@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= forum.name %></title>
+</head>
+<body>
+  <h1><%= forum.name %></h1>
+  <p><%= forum.description %></p>
+  <p>Created at: <%= forum.created_at %></p>
+  <p>User ID: <%= forum.user_id %></p>
+  <a href="/forums">Back to Forums</a>
+  <br>
+  <a href="/forums/<%= forum._id %>/edit">Edit</a>
+  <br>
+  <form method="POST" action="/forums/<%= forum._id %>?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>
