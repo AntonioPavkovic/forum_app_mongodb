@@ -1,0 +1,13 @@
+<h1>Posts</h1>
+
+<a href="/forums/<%= forumId %>/posts/new">Create New Post</a>
+
+<% posts.forEach((post) => { %>
+  <div class="post">
+    <h2><a href="/forums/<%= forumId %>/posts/<%= post._id %>"><%= post.post_name %></a></h2>
+    <p><%= post.description %></p>
+    <p>Created at: <%= post.created_at %></p>
+    <p>Vote count: <%= post.vote_count %></p>
+    <p>User ID: <%= post.user_id %></p>
+  </div>
+<% }); %>

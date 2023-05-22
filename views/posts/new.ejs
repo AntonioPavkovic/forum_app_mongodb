@@ -1,0 +1,9 @@
+<form action="/forums/<%= forum._id %>/posts" method="POST">
+  <label for="post_name">Post Name:</label>
+  <input type="text" name="post_name" id="post_name">
+
+  <label for="description">Description:</label>
+  <textarea name="description" id="description"></textarea>
+
+  <button type="submit">Create Post</button>
+</form>

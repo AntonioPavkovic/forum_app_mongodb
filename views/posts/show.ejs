@@ -1,0 +1,19 @@
+<h1>Post Details</h1>
+
+<div class="post">
+  <h2><%= post.post_name %></h2>
+  <p><%= post.description %></p>
+  <p>Created at: <%= post.created_at %></p>
+  <p>Vote count: <%= post.vote_count %></p>
+  <p>User ID: <%= post.user_id %></p>
+
+  <!-- Like button -->
+  <form action="/forums/<%= post.forum_id %>/posts/<%= post._id %>/like" method="POST">
+    <button type="submit" class="like-button">Like</button>
+  </form>
+
+  <!-- Dislike button -->
+  <form action="/forums/<%= post.forum_id %>/posts/<%= post._id %>/dislike" method="POST">
+    <button type="submit" class="dislike-button">Dislike</button>
+  </form>
+</div>
